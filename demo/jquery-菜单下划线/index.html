@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>发现</title>
+    <meta name="viewport"
+          content=" height = device-height,
+                    width = device-width,
+                    initial-scale = 1.0,
+                    minimum-scale = 1.0,
+                    maximum-scale = 1.0,
+                    user-scalable = no"/>
+    <link rel="stylesheet" href="css.css"/>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="js.js"></script>
+</head>
+<body>
+<div class="find_nav">
+    <div class="find_nav_left">
+        <div class="find_nav_list">
+            <ul>
+                <li class="find_nav_cur"><a href="javascript:void(0)">资讯</a></li>
+                <li><a href="javascript:void(0)">分析</a></li>
+                <li><a href="javascript:void(0)">原创</a></li>
+                <li><a href="javascript:void(0)">评论</a></li>
+                <li><a href="javascript:void(0)">技术</a></li>
+                <li><a href="javascript:void(0)">项目</a></li>
+                <li><a href="javascript:void(0)">黄页</a></li>
+                <li><a href="javascript:void(0)">股市</a></li>
+                <li><a href="javascript:void(0)">经济</a></li>
+                <li class="sideline"></li>
+            </ul>
+        </div>
+    </div>
+    <a class="search_logo" href="">搜索</a>
+</div>
+</body>
+    <!--$(function() {-->
+        <!--var fl_w = $(".find_nav_list").width();-->
+        <!--var flb_w = $(".find_nav_left").width();-->
+        <!--var fn_w = ($(".find_nav").width() - 62) / 2;-->
+        <!--$(".find_nav_list li").on("click", function() {-->
+            <!--var fnl_l;-->
+            <!--var fnl_x = parseInt($(this).position().left);-->
+            <!--if (fnl_x <= fn_w) {-->
+                <!--fnl_l = 0;-->
+            <!--} else if (fn_w - fnl_x <= flb_w - fl_w) {-->
+                <!--fnl_l = flb_w - fl_w;-->
+            <!--} else {-->
+                <!--fnl_l = fn_w - fnl_x;-->
+            <!--}-->
+            <!--$(".find_nav_list").animate({-->
+                <!--"left" : fnl_l-->
+            <!--}, 300);-->
+            <!--sessionStorage.left = fnl_l;-->
+            <!--var c_nav = $(this).find("a").text();-->
+            <!--navName(c_nav);-->
+        <!--});-->
+    <!--});-->
+</html>
