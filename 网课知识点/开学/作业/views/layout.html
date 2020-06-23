@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+
+<body>
+    <header>
+        <ul class="nav">
+            <a href="/">
+                <li class="home">首页</li>
+            </a>
+            <a href="/book">
+                <li class="book">学习手册</li>
+            </a>
+            <a href="/blog">
+                <li class="blog">技术博客</li>
+            </a>
+            <a href="/video">
+                <li class="video">教学视频</li>
+            </a>
+        </ul>
+    </header>
+
+    <div class="max">
+        <div class="content">
+            {% block content %} {% endblock%}
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="IPC">
+            <p>&copy;2019冀ICP备 18023262号-4</p>
+        </div>
+    </footer>
+</body>
+
+</html>

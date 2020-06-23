@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>首页</h1>
+    <p></p>
+    <button>点击加在数据</button>
+
+    <!-- 静态引入js -->
+    <script src="/js/myAjax.js"></script>
+
+    <script>
+        const btn = document.querySelector("button")
+        const p = document.querySelector("p")
+            //引用封装
+            // btn.onclick = function() {
+            //     console.log("Aaa")
+            //     myAjax("get", "api/data", function(data) {
+            //         p.innerHTML = data
+            //     })
+            // }
+
+
+        //引用promise封装
+        btn.onclick = function() {
+            console.log("aaa")
+            let data = myAjax("get", "api/data");
+            data.then(function(data) {
+                p.innerHTML = data;
+            }).catch(function(err) {
+                console.log(err)
+            })
+        }
+
+
+        // //XhtmlRequest()
+        // let xhr = new XMLHttpRequest();
+
+        // btn.onclick = function() {
+        //     console.log("aaa")
+        //         //第一个参数是请求方式，第二个是请求地址
+        //     xhr.open("get", "/data")
+        //     xhr.send();
+        //     //监听readyState事件
+        //     xhr.onreadystatechange = function() {
+        //         // readyState事件   有几个状态
+        //         /*
+        //             0: 是初始化状态
+        //             1：open()方法以调用，但是send()方法未调用，
+        //             2：send()方法以调用，请求已经发送，
+        //             3：处理请求，响应头已经完成，响应体未发送
+        //             4：完成处理，已经响应数据。
+        //         */
+        //         if (xhr.readyState === 4 && xhr.status === 200) {
+        //             //数据存放在xhr.responseText
+        //             let data = xhr.responseText;
+        //             //需要创建文本节点
+        //             let txtNode = document.createTextNode(data)
+        //             p.appendChild(txtNode)
+
+        //             //另一种方法
+        //             // p.innerHTML = xhr.responseText;
+        //         }
+        //     }
+
+        // }
+    </script>
+</body>
+
+</html>

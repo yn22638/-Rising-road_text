@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>首页</h1>
+    <p></p>
+    <button class="btn">Get</button>
+    <button class="btn1">Post</button>
+    <button class="btn2">Ajax</button>
+    <!-- 静态引入js -->
+    <script src="/js/jquery.js"></script>
+    <script>
+        //jquery $.get() $.post $.ajax
+        //1. $.get()请求
+        $(".btn").click(function() {
+            $.get("/api/data")
+                .done(function(res) {
+                    //回调函数的参数，是服务器响应的数据
+                    console.log(res)
+                })
+        })
+
+        //2. $.post(URL,data,callback);
+        // 必需的 URL 参数规定您希望请求的 URL。
+        // 可选的 data 参数规定连同请求发送的数据。
+        // 可选的 callback 参数是请求成功后所执行的函数名。
+        $(".btn1").click(function() {
+            $.post(
+                "/api/data", {
+                    name: "Matthew",
+                    age: 12,
+                },
+                function(data, status) {
+                    console.log(this.name, this.age),
+                        console.log("Data: " + data + "\nStatus: " + status);
+                });
+        })
+
+        //3. $ajax()
+        $(".btn2").click(function() {
+            $.ajax({
+                type: "get", //请求方法
+                url: "/api/data", //请求地址
+                data: {
+                    id: 1,
+                    name: "hello"
+                }, //请求时所携带数据
+                dataType: 'json', //规定服务器响应数据的数据类型
+                beforeSend: function() { //发送请求前 执行的函数
+                    //jquery中的html 原生dom的innerHTML
+                    $("p").html("等待数据加载！")
+                },
+                success: function(data) {
+                    //成功时触发的函数 参数是响应数据
+                    $("p").html(data.name);
+                },
+                error: function(err) {
+                    //失败时触发的函数 参数是响应数据
+                    console.log(err);
+                },
+                complete: function() {
+                    //无论请求成功还是失败，都会执行
+                    console.log("complete")
+                }
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+        // const btn = document.querySelector("button")
+        // btn.onclick = function() {
+        //     console.log("aaaaaaa")
+        // }
+    </script>
+
+
+</body>
+
+</html>

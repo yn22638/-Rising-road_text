@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <h1>{{desc}}</h1>
+
+    <!-- action 指定表单提交数据的路径 -->
+    <!-- method 既定表单提交时的方式 有get，post默认是get -->
+    <label for="">get请求</label>
+    <form action="/login" method="get">
+        <!-- name属性规定传输数据的字段 -->
+        <label for="用户名"></label>
+        <input type="text" name="username" />
+        <input type="submit" value="提交用户名" />
+    </form>
+
+
+
+    <label for="">post请求</label>
+    <form action="/login" method="post">
+        <!-- name属性规定传输数据的字段 -->
+        <label for="用户名"></label>
+        <input type="text" name="username" />
+        <input type="submit" value="提交用户名" />
+    </form>
+</body>
+
+</html>

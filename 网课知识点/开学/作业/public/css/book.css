@@ -1,0 +1,7 @@
+header .nav .book {
+    border-bottom: 3px solid rgb(25, 102, 202);
+}
+
+header .nav .book a {
+    color: rgb(25, 102, 202);
+}

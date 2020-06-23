@@ -1,0 +1,7 @@
+header .nav .home {
+    border-bottom: 3px solid rgb(25, 102, 202);
+}
+
+header .nav .home a {
+    color: rgb(25, 102, 202);
+}

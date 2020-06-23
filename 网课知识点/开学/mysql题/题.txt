@@ -1,0 +1,49 @@
+1.  修改 左冷禅的地址为 河北太行山
+update EmployeeInfo set EAddress = "和别太行山" where Ename = "左冷禅";
+2.  修改李莫愁的地址为燕大云龙小吃城 生日为 1984-10-17
+update EmployeeInfo set EAddress = "严打云龙小吃城",Ebirthday = "1984-10-17" where Ename = "李莫愁";
+3.  查询全部员工信息
+select * from EmployeeInfo;
+4.  查询所有男员工的姓名、地址、生日并显示中文列名
+select ename as "姓名",eaddress as"地址",ebirthday as "生日" form EmployeeInfo
+where Esex = "男";
+5.  查询地址中包含山的员工信息
+select * from EmployeeInfo where Eaddress like '%山%';对
+select Eaddress EmployeeInfo where Eaddress like '%山%';错
+6.  查询地址中包含燕的女员工信息
+select * from EmployeeInfo where Eaddress like ''%燕%" and Esex = '女';对
+select Eaddress EmployeeInfo where Eaddress like '%燕%" and Esex = '女';错
+7.  查询员工的姓名、地址、生日
+select ename as "姓名",eaddress as"地址",ebirthday as "生日" form EmployeeInfo
+8.  删除孔子这名员工
+delete from EmployeeInfo where Ename = "孔子";
+9.  查询入职时间在2011到2013年之间的员工信息
+select * from EmployeeInfo where Edate between "2011-1-1" and "2016-1-1";
+select * from EmployeeInfo where Edate>=('2011') and Edate<=('2013');
+10. 查询有销售业绩的员工信息(in  子查询)
+select e.* from EmployeeInfo as e inner join EScore as s on e.eid = s.eid group by e.eid;
+11. 查询员工姓名、地址、销售日期、销售金额（表连接）
+select ename,eAddress,sdate,sum(smoney) FROM EmployeeInfo join EScore on EScore.Eid = EmployeeInfo.Eid;
+12. 查询员工业绩表 显示 员工编号、销售日期、销售金额、提成比例、提成金额
+并显示为中文列名
+select em.Eid as "员工编号",es.Sdate as "销售日期",es.Smoney as "销售金额",es.Sdiscount as "提成比例",sum(es.Sdiscount*es.smoney) as "提成金额"
+from EmployeeInfo as em join EScore as es  GROUP BY em.Eid = es.Eid;
+13. 查询销售金额前三的员工编号、销售日期、销售金额
+select em.eid as "员工编号", es.sdate as "销售日期",sum(es.Smoney) as "销售金额" from employeeinfo as em join escore as es GROUP BY em.eid ORDER BY SUM(es.Smoney) desc LIMIT 3;
+
+14. 统计员工人数
+select count(eid) as "员工人数" from EmployeeInfo;
+
+15. 计算销售总额、销售平均值、最大销售金额、最小销售金额
+select sum(smoney),avg(smoney),max(smoney),min(smoney) FROM escore;
+
+16. 分组统计每位员工的销售总额
+select e.eid,e.ename,sum(es.smoney) from employeeinfo as e join escore as es GROUP BY es.Eid;
+
+17. 分组统计每位员工的销售平均值，筛选出销售平均值大于50000的信息并按照销售平均值降序排序
+select e.eid,e.ename,avg(smoney) from employeeinfo as e join escore as es on e.eid = es.eid GROUP BY e.eid HAVING avg(smoney)>=50000 ORDER BY avg(smoney)desc;
+
+18. 查询每位员工的提成金额
+select Sdiscount*smoney as "提成金额" from escore GROUP BY eid;
+
+19. 按销售日期统计每天的销售总额

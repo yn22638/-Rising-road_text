@@ -1,0 +1,66 @@
+use Myshop;
+-- create table Categroy
+-- (
+-- 	CID int UNSIGNED auto_increment PRIMARY key,
+-- 	CName varchar(20)
+-- );
+-- create table Products
+-- (
+-- 	PID int UNSIGNED auto_increment PRIMARY key,
+-- 	Pname varchar(100),
+-- 	Pprice DECIMAL(10,2),
+-- 	ptime1 date,
+-- 	ptime2 date,
+-- 	pcompeny varchar(100),
+-- 	CID int UNSIGNED
+-- );
+-- CREATE table Orders
+-- (
+-- 	OID int UNSIGNED auto_increment PRIMARY key,
+-- 	PID int UNSIGNED,
+-- 	Ocount int,
+-- 	Otime datetime
+-- );
+-- 创建表与表之间的关系：
+-- alter table 外键表名 
+-- add CONSTRAINT 关系的名称
+-- FOREIGN key 列名 REFERENCES 主键表名(列名)
+-- alter table Products
+-- add CONSTRAINT A
+-- foreign key (CID) REFERENCES categroy(CID)
+-- alter table Orders
+-- add CONSTRAINT B
+-- foreign key (PID) REFERENCES Products(PID)
+-- INSERT into Categroy
+-- values(DEFAULT,'饮料'),
+-- 			(DEFAULT,'蔬菜'),
+-- 			(DEFAULT,'肉类'),
+-- 			(DEFAULT,'甜点');
+-- insert into Products
+-- values(DEFAULT,'好丽友',12, '2013-07-18','2013-10-15','欢乐公司',4),
+-- 			(DEFAULT,'冰红茶',3,'2011-12-10','2012-12-10','康师傅公司',1),
+-- 			(DEFAULT,'冰糖雪梨',4,'2013-2-10','2013-12-10','康师傅公司',1),
+-- 			(DEFAULT,'西红柿',2,'2013-12-1','2013-12-8','农业公司',2),
+-- 			(DEFAULT,'茄子',2,'2013-12-1','2014-1-1','农业公司',2),
+-- 			(DEFAULT,'王中王',5,'2013-8-12','2013-10-15','雨润公司',3),
+-- 			(DEFAULT,'肉粒多',13,'2013-9-30','2013-12-19','京华公司',3);
+-- insert into Orders
+-- values(DEFAULT,1,4,'2013-9-10'),
+-- 			(DEFAULT,3,8,'2012-10-1'),
+-- 			(DEFAULT,6,2,'2013-8-10'),
+-- 			(DEFAULT,1,13,'2013-9-19'),
+-- 			(DEFAULT,1,30,'2013-8-11'),
+-- 			(DEFAULT,2,9,'2012-10-1'),
+-- 			(DEFAULT,2,38,'2012-9-12'),
+-- 			(DEFAULT,3,22,'2013-11-12'),
+-- 			(DEFAULT,4,4,'2012-11-12'),
+-- 			(DEFAULT,4,6,'2012-10-10'),
+-- 			(DEFAULT,7,45,'2013-10-9');
+
+
+
+
+
+
+
+

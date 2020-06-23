@@ -1,0 +1,85 @@
+create database newshop default charset utf8;
+use newshop;
+drop database newshoputf8
+-- 创建表 productinfo商品信息表
+create table productinfo(
+pid int unsigned auto_increment primary key not null comment '商品编号',
+pimg varchar(200) not null comment '商品图片',
+pname varchar(100) not null comment '商品名称',
+pdiscount decimal(2,1) comment '折扣',
+pevaluate decimal(10,1) comment '商品原进价',
+pclick int unsigned comment '商品点击量'
+)
+
+-- 创建表 order 商品销售表
+create table orders(
+sid int unsigned auto_increment primary key not null comment '销售编号',
+oid int unsigned not null comment '订单编号',
+pid int unsigned not null comment '商品编号',
+sunmber int unsigned comment '商品销量',
+stime datetime comment '销售时间',
+sprice decimal(10,2) comment '售价'
+)
+-- 创建表 comment  评论表
+create table comments(
+cid int unsigned auto_increment primary key not null comment '品论表编号',
+pid int unsigned not null comment '商品编号',
+comment varchar(500) comment '评价内容',
+commenttime datetime comment '评价时间'
+)
+use newshop;
+-- 5.查询商品名称，商品图片和商品的售价
+select pname,pimg,sprice from productinfo
+ INNER JOIN orders on productinfo.pid=
+orders.pid
+-- 6，查询订单编号，商品名称，销售数量，
+-- 商品售价和销售时间。
+select oid,pname,snumber,sprice,stime 
+from productinfo INNER JOIN orders 
+on productinfo.pid=orders.pid
+
+-- 7.查询商品编号，商品名称，评价内容，
+-- 评价时间
+select productinfo.pid,pname,comment
+,commenttime 
+from productinfo INNER JOIN comments
+on productinfo.pid=comments.pid
+-- 8.查询订单编号，单笔订单的销售总量
+-- 及单笔订单的销售总额
+select oid,sum(snumber)
+,sum(snumber*sprice) from orders
+group by oid 
+having oid='201712114'
+-- 9.查询没有任何销量的产品的产品编号，
+-- 产品名称
+-- 方法一 left join
+select productinfo.pid,pname
+from productinfo left JOIN orders on 
+productinfo.pid=orders.pid 
+where snumber is null
+-- 方法二 子查询
+select pid,pname from productinfo
+where pid not in(select pid 
+from orders)
+-- 10.按商品的点击量降序，查看商品编号，
+商品名称，商品点击量
+select pid,pname,pclick from productinfo
+order by pclick desc
+
+-- 11，查询销量最高的三件商品的商品编号。
+select pid from orders
+GROUP BY pid order by sum(snumber) 
+desc limit 3
+-- 12，查询销量最高的三件商品的商品编号，
+-- 商品名称
+select orders.pid,pname from orders 
+INNER JOIN productinfo ON
+ productinfo.pid=orders.pid
+GROUP BY pid order by sum(snumber) 
+desc limit 3
+-- 13，查询销售额最高的三笔订单
+select oid from 
+ orders group by oid 
+order by sum(snumber*sprice) desc
+limit 3
+

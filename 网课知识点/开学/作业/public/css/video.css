@@ -1,0 +1,7 @@
+header .nav .video {
+    border-bottom: 3px solid rgb(25, 102, 202);
+}
+
+header .nav .video a {
+    color: rgb(25, 102, 202);
+}

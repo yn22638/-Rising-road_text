@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="axiosGet">获取数据</button>
+    <div>
+        <input type="text" class="txt">
+        <button class="add">添加</button>
+    </div>
+    <ul class="list">
+    </ul>
+
+    <!-- 模态框 -->
+    <div>
+        <input type="text" class="upda-text" style="display: none;">
+        <button>更新</button>
+    </div>
+    <script src="/js/axios.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script>
+        $(".axiosGet").click(function() {
+            $(".list").empty(); //清空里面的列表
+            axios
+                .get("/axios/data")
+                .then(res => {
+                    console.log(res.data);
+                    // document.write(res.data)
+                    for (let i = 0; i < res.data.length; i++) {
+                        let $li = $("<li>") //jquery创建dom
+                        let btn = `  <button class="update" data-index = ${i}>修改</button><button class="del" data-index = ${i}>删除</button>`
+                        $li.append(res.data[i], btn) //通过append添加
+                        $(".list").append($li);
+                    }
+                })
+        })
+
+        //添加数据
+        $(".add").click(function() {
+            //获取input标签的value值
+            let fruit = $(".txt").val();
+            axios.post("/axios/fruits", {
+                    fruit: fruit,
+                })
+                .then(res => {
+                    console.log(res.data);
+                    for (let i = 0; i < res.data.length; i++) {
+                        let $li = $("<li>") //jquery创建dom
+                        let btn = `  <button class="update" data-index = ${i}>修改</button><button class="del" data-index = ${i}>删除</button>`
+                        $li.append(res.data[i]) //通过append添加
+                        $(".list").append($li);
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            $(".list").empty();
+            //清空input里的文字
+            $("input").val("")
+        })
+
+        //修改数据
+        $(".list").on(".update", "click", function() {
+            axios.put("/axios/fruits/0", {
+                newFruit: "苹果",
+                // "香蕉","句子"
+            }).then(res => {
+                console.log(res.data);
+                for (let i = 0; i < res.data.length; i++) {
+                    let $li = $("<li>") //jquery创建dom
+                    let btn = `  <button class="update" data-index = ${i}>修改</button><button class="del" data-index = ${i}>删除</button>`
+                    $li.append(res.data[i]) //通过append添加
+                    $(".list").append($li);
+                }
+            })
+            $(".list").empty(); //清空里面的列表
+        })
+
+        //删除数据
+        $(".list").on("click", ".del", function() {
+            axios.delect("/axios/fruits/0")
+                .then(res => {
+                    console.log(res.data)
+                    for (let i = 0; i < res.data.length; i++) {
+                        let $li = $("<li>") //jquery创建dom
+                        let btn = `  <button class="update" data-index = ${i}>修改</button><button class="del" data-index = ${i}>删除</button>`
+                        $li.append(res.data[i], btn) //通过append添加
+                        $(".list").append($li);
+                    }
+                })
+        })
+    </script>
+</body>
+
+</html>
