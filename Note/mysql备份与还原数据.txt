@@ -1,0 +1,21 @@
+数据书备份与还原
+  还原
+	1.登录数据库
+	2.创建数据库
+	3.使用数据库
+	4.执行文件，source + 文件路径
+	  例：source d：//a.sql
+	
+
+  备份
+mysqldump -u root -p --all-databases > D://backupfile.sql
+备份所有数据到d盘
+mysqldump --no-defaults -h localhost -u root -p myshop >d://shopdbbak.sql
+单独备份一个数据库到d盘
+
+更多备份方法请看：https://www.cnblogs.com/ct20150811/p/9430018.html
+
+
+使用sqlyog备份
+  1.在库名旁边右键点击备份/导出 -> 备份数据库，转存到sql然后在窗口export to 给路径改到自己想存的路径然后导出，
+  2.在数据库用户名右键点击执行sql脚本，出现小窗口，然后给路径改成备份的目录，然后确定，最后导入成功
